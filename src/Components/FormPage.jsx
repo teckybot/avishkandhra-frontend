@@ -12,7 +12,6 @@ function FormPage() {
     district: '',
     professionalDetails: '',
     institutionName: '',
-    designation: '',
     participationInterest: '',
     whyJoin: '',
     previousExperience: '',
