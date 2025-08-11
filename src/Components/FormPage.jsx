@@ -94,7 +94,7 @@ function FormPage() {
 
       if (response.ok) {
         setSubmissionStatus('success');
-        navigate('/thank-you'); // Redirect to a success page
+        
       } else {
         const result = await response.json();
         setSubmissionStatus('error');
@@ -169,7 +169,7 @@ function FormPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10 px-4">
-      <div className="bg-[linear-gradient(357.22deg,#283643_29.73%,#425A6F_97.69%)] p-8 md:p-12 rounded-xl shadow-lg w-full max-w-4xl">
+      <div className="bg-[linear-gradient(357.22deg,#283643_29.73%,#425A6F_97.69%)] p-8 md:p-12 rounded-xl shadow-lg w-full max-w-6xl">
         <h1 className="text-3xl md:text-4xl font-bold text-center text-white mb-2">
           Avishkandhra Campaign
         </h1>
@@ -259,7 +259,7 @@ function FormPage() {
               </>
             ) : (
               <>
-                <FaPaperPlane className="mr-2" />
+                <div className="mr-2" />
                 Submit
               </>
             )}
