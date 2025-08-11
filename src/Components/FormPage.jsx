@@ -93,7 +93,7 @@ function FormPage() {
 
       if (response.ok) {
         setSubmissionStatus('success');
-        
+
       } else {
         const result = await response.json();
         setSubmissionStatus('error');
@@ -168,18 +168,42 @@ function FormPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10 px-4">
-      <div className="bg-[linear-gradient(357.22deg,#283643_29.73%,#425A6F_97.69%)] p-8 md:p-12 rounded-xl shadow-lg w-full max-w-6xl">
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-white mb-2">
-          Avishkandhra Campaign
-        </h1>
-        <p className="text-center text-white mb-8">
-          Join us in shaping the future of innovation in Andhra Pradesh!
+      <div className="mb-8 max-w-4xl text-center px-4">
+        <h2 className="text-4xl font-extrabold text-[#283643] mb-2">
+          REGISTRATION
+        </h2>
+        <p className="text-lg text-gray-700 italic">
+          The deadline to register is <span className="text-red-600 font-bold">18.08.2025</span> — be part of Andhra Pradesh’s journey to becoming the Startup Capital of India.
         </p>
+      </div>
 
+      <div className="bg-[linear-gradient(357.22deg,#283643_29.73%,#425A6F_97.69%)] p-8 md:p-12 rounded-xl shadow-lg w-full max-w-6xl">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
             {renderFormGroup('FULL NAME', 'fullName', 'text', 'e.g., JOHN DOE')}
-            {renderFormGroup('GENDER', 'gender', 'select', '', ['Male', 'Female', 'Prefer not to say'])}
+
+            <div className="mb-6">
+              <label className="block text-white text-sm font-semibold mb-2">
+                GENDER
+              </label>
+              <div className="flex items-center space-x-8 font-semibold">
+                {['Male', 'Female', 'Prefer not to say'].map((option) => (
+                  <label key={option} className="flex items-center space-x-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="gender"
+                      value={option}
+                      checked={formData.gender === option}
+                      onChange={handleChange}
+                      className="appearance-none w-6 h-6 border-2 border-white rounded-full checked:bg-[#283643] checked:ring-2 checked:ring-offset-2 checked:ring-white"
+                    />
+                    <span className="text-white text-sm">{option.toUpperCase()}</span>
+                  </label>
+                ))}
+              </div>
+              {errors.gender && <p className="text-red-500 text-xs italic mt-2">{errors.gender}</p>}
+            </div>
+
             {renderFormGroup('MOBILE NUMBER (WhatsApp preferred)', 'mobileNumber', 'tel', 'e.g., 9876543210')}
             {renderFormGroup('EMAIL ID', 'email', 'email', 'e.g., john.doe@example.com')}
             <div className="mb-6">
@@ -248,18 +272,18 @@ function FormPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 flex items-center justify-center disabled:opacity-50"
+            className="w-full bg-white hover:bg-white/80 text-black font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 flex items-center justify-center disabled:opacity-50"
             disabled={submissionStatus === 'submitting'}
           >
             {submissionStatus === 'submitting' ? (
               <>
                 <FaSpinner className="animate-spin mr-2" />
-                Submitting...
+                SUBMITTING...
               </>
             ) : (
               <>
                 <div className="mr-2" />
-                Submit
+                SUBMIT
               </>
             )}
           </button>
