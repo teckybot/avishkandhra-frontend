@@ -1,9 +1,17 @@
-export default function App() {
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // ✅ Added Route here
+import Navbar from './Components/Navbar';
+import Home from './Pages/Home';
+
+function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600 mb-4">
-        Vite + TailwindCSS Setup!!
-      </h1>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
