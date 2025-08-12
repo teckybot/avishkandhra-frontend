@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { FaPaperPlane, FaSpinner } from 'react-icons/fa';
+import { FaSpinner } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import api from '../../apis/api';
 
-function FormPage() {
+function Formpage() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     fullName: '',
     mobileNumber: '',
     email: '',
@@ -20,7 +21,10 @@ function FormPage() {
     reference2: '',
     contactNumber2: '',
     consent: false,
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const [districts, setDistricts] = useState({});
   const [errors, setErrors] = useState({});
@@ -29,8 +33,9 @@ function FormPage() {
   useEffect(() => {
     const fetchDistricts = async () => {
       try {
-        const response = await fetch('/api/districts');
-        const result = await response.json();
+        const result = await api.get('/districts');
+        if (result.success) setDistricts(result.data);
+
         if (result.success) {
           setDistricts(result.data);
         }
@@ -84,25 +89,22 @@ function FormPage() {
     }
 
     setSubmissionStatus('submitting');
+    console.log("Submitting form data:", formData);
+
     try {
-      const response = await fetch('/api/form/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const result = await api.post('/form/submit', formData);
 
-      if (response.ok) {
+      if (result.success) {
         setSubmissionStatus('success');
-
+        setShowSuccessModal(true);
+        // optionally clear form here
+        // setFormData(initialState);
       } else {
-        const result = await response.json();
         setSubmissionStatus('error');
-        console.error('Submission error:', result.errors);
-        // Handle backend validation errors and update the state
+
         if (result.errors) {
           const backendErrors = {};
-          result.errors.forEach(err => {
-            // A simplified mapping, you might need a more complex one
+          result.errors.forEach((err) => {
             if (err.includes('fullName')) backendErrors.fullName = err;
             if (err.includes('mobileNumber')) backendErrors.mobileNumber = err;
             if (err.includes('email')) backendErrors.email = err;
@@ -186,7 +188,7 @@ function FormPage() {
               <label className="block text-white text-sm font-semibold mb-2">
                 GENDER
               </label>
-              <div className="flex items-center space-x-8 font-semibold">
+              <div className="flex items-center space-x-3 font-semibold">
                 {['Male', 'Female', 'Prefer not to say'].map((option) => (
                   <label key={option} className="flex items-center space-x-3 cursor-pointer">
                     <input
@@ -207,7 +209,7 @@ function FormPage() {
             {renderFormGroup('MOBILE NUMBER (WhatsApp preferred)', 'mobileNumber', 'tel', 'e.g., 9876543210')}
             {renderFormGroup('EMAIL ID', 'email', 'email', 'e.g., john.doe@example.com')}
             <div className="mb-6">
-              <label htmlFor="district" className="block text-gray-700 text-sm font-semibold mb-2">
+              <label htmlFor="district" className="block text-white text-sm font-semibold mb-2">
                 DISTRICT
               </label>
               <select
@@ -288,6 +290,28 @@ function FormPage() {
             )}
           </button>
         </form>
+        {showSuccessModal && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-96 relative">
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  setFormData(initialFormData);
+                }}
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+              >
+                ✕
+              </button>
+
+              <h2 className="text-2xl font-bold text-green-600 mb-4">Registration Successful 🎉</h2>
+              <p className="text-gray-700">
+                Thank you for registering.
+              </p>
+            </div>
+          </div>
+        )}
+
 
         {submissionStatus === 'error' && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
@@ -300,4 +324,4 @@ function FormPage() {
   );
 }
 
-export default FormPage;
+export default Formpage;

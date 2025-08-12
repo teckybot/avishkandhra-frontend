@@ -7,7 +7,7 @@ const Footer = () => {
       <img
         src={AVISHKANDHRALogo}
         alt="Vishkandhra Logo"
-        className="max-w-full h-auto mb-3"
+        className="max-w-full h-auto mt-12 mb-3"
       />
 
       {/* Tagline */}
