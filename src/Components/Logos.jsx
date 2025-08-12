@@ -5,7 +5,7 @@ import AVISHKANDHRASTARTUPLogo from "../Images/AVISHKANDHRA_STARTUP_LOGO.png";
 
 const Logos = () => {
   return (
-    <div className="w-full bg-white py-3 px-3">
+    <div className="w-full bg-white py-3 px-3 pt-28">
       <div className="max-w-[3000px] mx-auto grid grid-cols-1 sm:grid-cols-3 items-center justify-items-center">
         {/* First Logo - RTIH */}
         <img

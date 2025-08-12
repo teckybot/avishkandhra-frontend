@@ -32,7 +32,7 @@ const WhoCanJoin = () => {
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <h2 className="text-center text-3xl sm:text-4xl font-bold mb-12">
+        <h2 className="text-center text-4xl sm:text-4xl  font-extrabold text-[#283643] mb-12 ">
           WHO CAN JOIN ?
         </h2>
 

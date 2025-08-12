@@ -167,7 +167,7 @@ function FormPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center py-10 px-4 pt-36">
       <div className="mb-8 max-w-4xl text-center px-4">
         <h2 className="text-4xl font-extrabold text-[#283643] mb-2">
           REGISTRATION

@@ -22,10 +22,10 @@ const AvishkAndhraBanner = () => {
                             className="w-[180px] xs:w-[220px] sm:w-[280px] md:w-[350px] lg:w-[400px] xl:w-[500px]"
                         />
                         <div className="text-center sm:text-left">
-                            <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-2xl lg:text-[36px] font-bold leading-tight sm:leading-snug">
+                            <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-2xl lg:text-[36px] leading-tight sm:leading-snug text-[#283643] font-extrabold ">
                                 Igniting Andhra Innovations
                             </h1>
-                            <p className="mt-1 sm:mt-2 text-sm xs:text-base sm:text-lg md:text-xl lg:text-[28px] italic text-gray-600 sm:mr-0 md:mr-8 lg:mr-24">
+                            <p className="mt-1 sm:mt-3 text-sm xs:text-base sm:text-lg md:text-xl lg:text-[28px] italic text-gray-600 sm:mr-0 md:mr-8 lg:mr-24">
                                 Connecting Every Family to Entrepreneurship
                             </p>
                         </div>
