@@ -3,6 +3,7 @@ import Logos from '../Components/Logos';
 import AvishkAndhraBanner from '../Components/Hero';
 import About from '../Components/About';
 import FormPage from "../Components/FormPage";
+import WhoCanJoin from '../Components/WhoCanJoin';
 
 const Home = () => {
   const videoPageRef = useRef(null);
@@ -12,6 +13,7 @@ const Home = () => {
       <Logos />
       <AvishkAndhraBanner />
       <About />
+      <WhoCanJoin />
       <FormPage />
 
     </>
